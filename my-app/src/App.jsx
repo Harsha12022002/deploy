@@ -1,15 +1,28 @@
-import './App.css'
-import Home from './Home'
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import Navbar from './Navbar';
+import Login from './Login';
+import Signup from './Signup';
+import { useState } from 'react';
+import Pc from './Pc';
+import Cart from './Cart'
+import Buying from './Buying';
 function App() {
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
-   <div>
-    <Home/>
-    <p1>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur, dolore ratione quis consequuntur alias accusantium. Commodi sapiente vero quos culpa odit, molestiae maiores reprehenderit placeat perspiciatis a! Vero, beatae.
-    </p1>
-   </div>
-  )
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path='/Pc' element={<Pc/>}></Route>
+        <Route path='/Cart' element={<Cart/>}></Route>
+        <Route path='/' element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path='/sign' element={<Signup setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path='/Buying' element={<Buying/>}/>
+        <Route path='/home' element={isAuthenticated ? <Home /> : <Login setIsAuthenticated={setIsAuthenticated} />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

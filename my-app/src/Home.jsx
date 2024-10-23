@@ -2,7 +2,10 @@ import React from "react";
 
 const Home=(()=>{
     return(
-        <h1>Hello Iam Home</h1>
+        <div id="home-id" >
+            <div id="Home-img"></div>
+           
+        </div>
     )
 })
 
